@@ -1,3 +1,10 @@
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    controller.moveSprite(Jugador_Principal, 20, 100)
+})
+controller.A.onEvent(ControllerButtonEvent.Released, function () {
+    controller.moveSprite(Jugador_Principal, 100, 100)
+})
+let Jugador_Principal: Sprite = null
 scene.setBackgroundColor(8)
 scene.setBackgroundImage(img`
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
@@ -121,7 +128,7 @@ scene.setBackgroundImage(img`
     bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
     bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
     `)
-let Jugador_Principal = sprites.create(img`
+Jugador_Principal = sprites.create(img`
     7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
     7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
     7 7 1 1 1 1 1 7 7 1 1 1 1 1 7 7 
@@ -161,3 +168,7 @@ let Jugador_Principal_2 = sprites.create(img`
 controller.moveSprite(Jugador_Principal, 100, 100)
 Jugador_Principal_2.setVelocity(50, 50)
 Jugador_Principal_2.follow(Jugador_Principal, 50)
+forever(function () {
+    info.setScore(controller.dx())
+    info.setScore(controller.dy())
+})
